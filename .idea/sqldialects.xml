@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/hotel-infrastructure/src/main/java/com/example/implementationdao/GuestDAOImpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/hotel-infrastructure/src/main/java/com/example/implementationdao/ProvidedServicesDAOIMpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/hotel-infrastructure/src/main/java/com/example/implementationdao/RoomDAOImpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/hotel-infrastructure/src/main/java/com/example/implementationdao/RoomHistoryDAOImpl.java" dialect="MySQL" />
+    <file url="file://$PROJECT_DIR$/hotel-infrastructure/src/main/java/com/example/implementationdao/ServiceDAOImpl.java" dialect="MySQL" />
+  </component>
+</project>
