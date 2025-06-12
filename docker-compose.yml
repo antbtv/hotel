@@ -1,0 +1,48 @@
+version: '3.8'
+
+services:
+  mysql-db:
+    image: mysql:8.0
+    container_name: hotel-mysql
+    environment:
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    ports:
+      - "3306:3306"
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./sql:/docker-entrypoint-initdb.d
+    networks:
+      - hotel-network
+    command: --default-authentication-plugin=mysql_native_password
+
+  hotel-app:
+    build: .
+    container_name: hotel-app
+    ports:
+      - "8080:8080"
+    environment:
+      - DB_HOST=${DB_HOST}
+      - DB_PORT=${DB_PORT}
+      - DB_NAME=${DB_NAME}
+      - DB_USERNAME=${DB_USERNAME}
+      - DB_PASSWORD=${DB_PASSWORD}
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY}
+    depends_on:
+      - mysql-db
+    networks:
+      - hotel-network
+    volumes:
+      - ./logs:/usr/local/tomcat/logs
+
+volumes:
+  mysql_data:
+
+networks:
+  hotel-network:
+    driver: bridge
+    ipam:
+      config:
+        - subnet: 172.31.0.0/16
